@@ -1,16 +1,17 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="/modules/yonger/tpl/assets/css/dashforge.css" />
-    <link rel="stylesheet" href="/modules/yonger/tpl/assets/css/yonger.less" />
-    <script wb-app src="/modules/yonger/tpl/assets/js/dashforge.js"></script>
-    <script wb-app src="/modules/yonger/tpl/assets/js/yonger.js"></script>
+    <link rel="stylesheet" href="/engine/modules/yonger/tpl/assets/css/dashforge.css" />
+    <link rel="stylesheet" href="/engine/modules/yonger/tpl/assets/css/yonger.less" />
+    <link rel="stylesheet" href="/tpl/css/cabinet.less" />
+    <script wb-app src="/engine/modules/yonger/tpl/assets/js/dashforge.js"></script>
+    <script wb-app src="/engine/modules/yonger/tpl/assets/js/yonger.js"></script>
 </head>
 <body>
 <div wb-if="'{{_sess.user.role}}'!=='student'" class="ht-100v pd-t-100">
     <div class="row m-5">
-        <div class="col-sm-4 offset-sm-4 bg-gray-100 p-3 rounded-20 shadow">
-            <h5 class="tx-center">English Do</h5>
+        <div class="col-sm-4 offset-sm-4 bg-dark tx-white p-3 rounded-20 shadow">
+            <h5 class="tx-center tx-white tx-20">English Do</h5>
             <div class="form-group">
                 <label>Card number</label>
                 <input  wb-mask="9990000000999" class="form-control" type="text" name="card">

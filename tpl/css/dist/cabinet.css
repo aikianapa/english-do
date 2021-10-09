@@ -1,0 +1,13 @@
+body {
+  background: url(../img/background/smb_owner.jpg) top right no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-attachment: fixed;
+  backdrop-filter: blur(10px);
+  min-height: 100vh;
+  padding-top: 1rem;
+}
+
+/*# sourceMappingURL=cabinet.css.map */
