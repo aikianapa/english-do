@@ -14,7 +14,7 @@ class homeworksClass extends cmsFormsClass {
             $users = $users['list'];  
             $app->vars('_env.tmp.users',$users);
         }
-        $item['fStudents'] = json_decode($item['students'],true);
+        (array)$item['students'] === $item['students'] ? $item['fStudents'] = $item['students'] : $item['fStudents'] = json_decode($item['students']);
         $name = '';
         foreach($item['fStudents'] as $uid) {
             $name > '' ? $name.=', ' : null;

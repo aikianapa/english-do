@@ -23,7 +23,32 @@
             <button type="button" class="btn btn-primary btn-block rounded-20">Sign in</button>
         </div>
     </div>
+</div>
+<div wb-if="'{{_sess.user.role}}'=='student'" class="ht-100v container">
+    <div class="card bg-dark tx-white wd-250 mb-4">
+        <div class="card-body">
+        <wb-data wb="table=users&item={{_sess.user.id}}">
+        {{first_name}} {{last_name}}
+        <form id="Profile">
+        <wb-module wb="module=filepicker&mode=single" name="avatar" wb-path="/uploads/users" >
+        </form>
+    </wb-data>
+    </div>
+
+    </div>
+    
+    
+    <ul class="list-group">
+        <wb-foreach wb="table=homeworks" wb-filter="{'active':'on','$in': ['{{_sess.user.id}}','$students'] }">
+            <li class="list-group-item bg-gray-200 cursor-pointer" data-ajax="{'url':'/form/homeworks/show/{{id}}','html':'modal'}">{{date}} {{subject}}</li>
+        </wb-foreach>
+    </ul>
+</div>
+<modal>
+
+</modal>
     <script wb-app remove>
+        var ready = false;
         $('.btn-primary').on('click',function(){
             wbapp.post('/form/users/student_login',{
                 'card':$('[name=card]').val(),
@@ -36,25 +61,13 @@
                 }
             })
         });
+        setTimeout(() => {
+        $(document).delegate('.filepicker [name=avatar]','change',function(){
+            wbapp.save($("#Profile"),{"table":"users","item":"{{_sess.user.id}}","form":"#Profile","method":"ajax","silent":true});
+        });
+            
+        }, 2000);
+        ready = true;
     </script>
-</div>
-<div wb-if="'{{_sess.user.role}}'=='student'" class="ht-100v container">
-    <div>
-    <wb-data wb="table=users&item={{_sess.user.id}}">
-        {{first_name}} {{last_name}}
-        <!--wb-module wb="module=filepicker&mode=single" name="avatar" /-->
-    </wb-data>
-
-    </div>
-    <h5>Homework</h5>
-    <ul class="list-group">
-        <wb-foreach wb="table=homeworks" wb-filter="{'active':'on','$in': ['{{_sess.user.id}}','$students'] }">
-            <li class="list-group-item cursor-pointer" data-ajax="{'url':'/form/homeworks/show/{{id}}','html':'modal'}">{{date}} {{subject}}</li>
-        </wb-foreach>
-    </ul>
-</div>
-<modal>
-
-</modal>
 </body>
 </html>

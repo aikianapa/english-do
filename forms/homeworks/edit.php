@@ -62,6 +62,17 @@
                                 'original': false
                                 }" />
                         </div>
+                        <div class="form-group">
+                            <div class="divider-text">Аудиофайлы (mp3)</div>
+                            <wb-module name="images" wb="{
+                                'module':'filepicker',
+                                'mode':'multi',
+                                'path':'/uploads/homeworks/audio/',
+                                'button':'Аудиофайлы',
+                                'ext': 'mp3',
+                                'original': false
+                                }" />
+                        </div>
 
                     </div>
                     <div class="col-lg-4" id="students">
@@ -80,7 +91,7 @@
                                 </li>
                             </wb-foreach>
                         </ul>
-                        <textarea class="d-none" name="students">{}</textarea>
+                        <textarea class="d-none" type="json" name="students">{}</textarea>
                     </div>
                 </form>
             </div>
@@ -91,7 +102,7 @@
     </div>
 </div>
 <script wb-app >
-    var mhwe_stud;
+    var mhwe_stud = {};
     var modalHomeWorksEdit = function() {
         let form = $('#modalHomeWorksEdit');
         let list = $(form).find('#students .list-group');
@@ -99,6 +110,8 @@
         $(stud).removeAttr('data-params');
         try {
             mhwe_stud = json_decode($(stud).text());
+                        console.log($(stud).text());
+
         } catch (error) {
             mhwe_stud = [];
         }
@@ -106,6 +119,8 @@
             $(list).find('input[data-id="'+id+'"]').prop('checked',true);
         });
         $(list).delegate('input','change',function(){
+            if (typeof mhwe_stud == 'object') mhwe_stud = Object.values(mhwe_stud);
+            console.log(mhwe_stud);
             let id = $(this).data('id');
             if (in_array(id,mhwe_stud)) {
                 let pos = array_search(id,mhwe_stud);
@@ -113,8 +128,9 @@
             } else {
                 mhwe_stud.push(id);
             }
+            console.log(mhwe_stud);
             let json = json_encode(mhwe_stud);
-            $(stud).text(json);
+            $(stud).val(json);
         });
     }
     modalHomeWorksEdit();

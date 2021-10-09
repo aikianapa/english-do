@@ -44,7 +44,10 @@
                             </div>
                         </td>
                         <td>{{first_name}} {{last_name}}</td>
-                        <td class="tx-11">{{wbPhoneFormat({{phone}})}}<br>{{email}}</td>
+                        <td class="tx-11">
+                            {{wbPhoneFormat({{phone}})}}<br>{{email}}
+                            <span wb-if="'{{role}}'=='student'"><br>{{card}}</span>
+                        </td>
                         <td>{{role}}</td>
                         <td>{{_created}}</td>
                         <td class="text-right">

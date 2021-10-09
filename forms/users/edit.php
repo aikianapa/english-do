@@ -16,8 +16,11 @@
 
         <form id="{{_form}}EditForm" autocomplete="off">
           <input type="checkbox" class="custom-control-input" name="active" id="{{_form}}ValueItemActive">
+          <div class="row">
+          <div class="col-sm-6">
+
           <div class="form-group row">
-          <div class="input-group col-sm-6">
+          <div class="input-group col-12">
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fa fa-user"></i></span>
             </div>
@@ -31,9 +34,12 @@
               </div>
             </div>
           </div>
+          </div>
 
-          <p class="d-block d-sm-none p-1"></p>
-          <div class="input-group col-sm-6">
+
+
+          <div class="form-group row">
+          <div class="input-group col-12">
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fa fa-users"></i></span>
             </div>
@@ -45,17 +51,20 @@
               </select>
             </div>
           </div>
+            <p class="d-block d-sm-none p-1" />
           </div>
 
           <div class="form-group row">
-            <div class="input-group col-sm-6 col-12">
+            <div class="input-group col-12">
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fa fa-at"></i></span>
               </div>
               <input type="text" name="email" class="form-control" placeholder="Электронная почта">
             </div>
             <p class="d-block d-sm-none p-1" />
-            <div class="input-group col-sm-6 col-12">
+          </div>
+          <div class="form-group row">
+            <div class="input-group col-12">
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fa fa-phone"></i></span>
               </div>
@@ -63,15 +72,20 @@
             </div>
           </div>
 
+
           <div class="form-group row">
-            <div class="input-group col-sm-6 col-12">
+            <div class="input-group col-12">
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fa fa-barcode"></i></span>
               </div>
               <input type="text" wb-mask="9990000000999" class="form-control" name="card"
                                         placeholder="Номер карты">
             </div>
-            <p class="d-block d-sm-none p-1" />
+          </div>
+          </div>
+          <div class="col-sm-6 align-right">
+              <wb-module wb="module=filepicker&mode=single" name="avatar" wb-path="/uploads/users" >
+          </div>
           </div>
 
           <div class="form-group row">
