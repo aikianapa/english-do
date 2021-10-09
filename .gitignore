@@ -1,6 +1,6 @@
-uploads
-database
-engine
+uploads/
+database/
+engine/
 tpl/page
 forms/news
 forms/pages

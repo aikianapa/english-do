@@ -25,7 +25,7 @@
                         </wb-foreach>
                         </div>
                 </div>
-                <div wb-if="'{{count({{docs}})}}'>'0'">
+                <div wb-if="'{{count({{images}})}}'>'0'">
                     <div class="divider-text">Images</div>
                         <div class="d-inline-flex gallery">
                         <wb-foreach wb-from="images">
@@ -33,6 +33,27 @@
                             <img data-src="/thumbc/100x100/src/{{img}}" class="img-fluid" />
                         </a>
                         </wb-foreach>
+                        </div>
+                </div>
+                <div wb-if="'{{count({{audio}})}}'>'0'">
+                    <div class="divider-text">Audio</div>
+                        <div class="d-inline-flex gallery">
+                            <ul class="list-group">
+                        <wb-foreach wb-from="audio">
+
+
+<li class="list-group-item d-flex align-items-center">
+<audio controls>
+  <source src="{{img}}" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
+  <div>
+    <h6 class="tx-13 tx-inverse tx-semibold mg-l-10 mg-b-0">{{title}}</h6>
+    <span class="d-block tx-11 text-muted mg-l-10">{{alt}}</span>
+  </div>
+</li>
+                        </wb-foreach>
+                        </ul>
                         </div>
                 </div>
             </div>

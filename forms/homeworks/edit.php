@@ -64,7 +64,7 @@
                         </div>
                         <div class="form-group">
                             <div class="divider-text">Аудиофайлы (mp3)</div>
-                            <wb-module name="images" wb="{
+                            <wb-module name="audio" wb="{
                                 'module':'filepicker',
                                 'mode':'multi',
                                 'path':'/uploads/homeworks/audio/',
