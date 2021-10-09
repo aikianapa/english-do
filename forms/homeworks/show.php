@@ -1,6 +1,6 @@
 <div id="showHomework" class="modal fade show" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
 <wb-data wb="table=homeworks&item={{_route.item}}">
-    <div class="modal-dialog modal-xxl" role="document">
+    <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="my-modal-title">{{subject}}</h5>

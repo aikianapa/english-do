@@ -8,10 +8,10 @@ class homeworksClass extends cmsFormsClass {
     {
         $app = &$this->app;
         if ($app->vars('_env.tmp.users')) {
-            $users = &$app->vars('_env.tmp.users');
+            $users = $app->vars('_env.tmp.users');
         } else {
             $users = $app->itemList('users',['filter'=>['active'=>'on','role'=>'student']]);
-            $users = &$users['list'];  
+            $users = $users['list'];  
             $app->vars('_env.tmp.users',$users);
         }
         $item['fStudents'] = json_decode($item['students'],true);
