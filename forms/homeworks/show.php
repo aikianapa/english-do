@@ -25,7 +25,7 @@
                         </wb-foreach>
                         </div>
                 </div>
-                <div wb-if="'{{count({{images}})}}'>'0' && '{{images && '{{docs.0.img}}'>''.0.img}}'>''">
+                <div wb-if="'{{count({{images}})}}'>'0' && '{{images.0.img}}'>''">
                     <div class="divider-text">Images</div>
                         <div class="d-inline-flex gallery">
                         <wb-foreach wb-from="images">
