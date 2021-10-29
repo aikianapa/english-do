@@ -12,7 +12,7 @@
                 {{text}}
 
 
-                <div wb-if="'{{count({{docs}})}}'>'0'">
+                <div wb-if="'{{count({{docs}})}}'>'0' && '{{docs.0.img}}'>''">
                     <div class="divider-text">Documents</div>
                         <div class="d-inline-flex">
                         <wb-foreach wb-from="docs">
@@ -25,17 +25,17 @@
                         </wb-foreach>
                         </div>
                 </div>
-                <div wb-if="'{{count({{images}})}}'>'0'">
+                <div wb-if="'{{count({{images}})}}'>'0' && '{{images && '{{docs.0.img}}'>''.0.img}}'>''">
                     <div class="divider-text">Images</div>
                         <div class="d-inline-flex gallery">
                         <wb-foreach wb-from="images">
                         <a data-fslightbox="images" class="d-inline-block m-2" href="{{img}}">
-                            <img data-src="/thumbc/100x100/src/{{img}}" class="img-fluid" />
+                            <img data-src="/thumbc/100x100/src/{{img}}" class="img-fluid" alt="{{alt}}" title="{{title}}"/>
                         </a>
                         </wb-foreach>
                         </div>
                 </div>
-                <div wb-if="'{{count({{audio}})}}'>'0'">
+                <div wb-if="'{{count({{audio}})}}'>'0' && '{{audio.0.img}}'>''">
                     <div class="divider-text">Audio</div>
                         <div class="d-inline-flex gallery">
                             <ul class="list-group">
