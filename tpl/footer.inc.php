@@ -39,7 +39,7 @@
                     <li>
                         <span class="icon icon-seo-icons-06"></span>
                         <a href="http://english-do.ru">english-do.ru</a><br />
-                        <a href="http://instagram.com/mashka.english_do" target="_blank">Instagram</a>
+                        <a href="https://vk.com/engdo" target="_blank">vkontakte</a>
                     </li>
 
                 </ul>

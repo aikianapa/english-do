@@ -51,7 +51,7 @@
                     <h1 class="animated hiding" data-animation="bounceInDown" data-delay="0">{{header}}</h1>
                     <p class="animated hiding text" data-animation="fadeInDown" data-delay="500">{{text}} {{_sett.phone}}</p>
                     <p><a href="{{link}}" wb-if="button > ''" target="_blank">
-                            <img src="/assets/img/btn-insta.png" style="width:200px;margin-top:30px;" alt="{{button}}">
+                            <img src="/assets/img/btn-vk.png" style="width:200px;margin-top:30px;" alt="{{button}}">
                         </a></p>
                 </div>
             </div>
