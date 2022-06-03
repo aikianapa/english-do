@@ -55,11 +55,11 @@
                         </div>
                     </div>
 
-                    <div wb-if="'{{count({{video}})}}'>'0' && '{{audio.0.img}}'>''">
+                    <div wb-if="'{{count({{video}})}}'>'0' && '{{video.0.img}}'>''">
                         <div class="divider-text">Video</div>
                         <div class="d-inline-flex gallery">
                             <ul class="list-group">
-                                <wb-foreach wb-from="audio">
+                                <wb-foreach wb-from="video">
                                     <li class="list-group-item d-flex align-items-center">
                                         <video width="400" height="300" controls="controls" poster="video/duel.jpg">
                                             <source src="{{img}}" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' wb-if="'{{substr({{img}},-4)}}'=='.mp4'">
