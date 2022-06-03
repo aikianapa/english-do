@@ -73,7 +73,17 @@
                                 'original': false
                                 }" />
                         </div>
-
+                        <div class="form-group">
+                            <div class="divider-text">Видеофайлы (mp4,avi)</div>
+                            <wb-module name="audio" wb="{
+                                'module':'filepicker',
+                                'mode':'multi',
+                                'path':'/uploads/homeworks/video/',
+                                'button':'Видеофайлы',
+                                'ext': 'mp4,avi',
+                                'original': false
+                                }" />
+                        </div>
                     </div>
                     <div class="col-lg-4" id="students">
                         <div class="form-group">
