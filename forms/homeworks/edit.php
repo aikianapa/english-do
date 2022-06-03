@@ -75,7 +75,7 @@
                         </div>
                         <div class="form-group">
                             <div class="divider-text">Видеофайлы (mp4,avi)</div>
-                            <wb-module name="audio" wb="{
+                            <wb-module name="video" wb="{
                                 'module':'filepicker',
                                 'mode':'multi',
                                 'path':'/uploads/homeworks/video/',
