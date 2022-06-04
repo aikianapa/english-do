@@ -15,7 +15,7 @@
                     <div wb-if="'{{count({{docs}})}}'>'0' && '{{docs.0.img}}'>''">
                         <div class="divider-text">Documents</div>
                         <div class="d-inline-flex">
-                            <wb-foreach wb-from="docs">
+                            <wb-foreach wb-from="docs" wb-tpl="false">
                                 <a class="card wd-100 m-2 d-inline-block" href="{{img}}" target="_blank">
                                     <img data-src="/thumb/70x70/src/{{img}}" class="img-fluid m-2" />
                                     <div class="card-body p-2">
@@ -28,7 +28,7 @@
                     <div wb-if="'{{count({{images}})}}'>'0' && '{{images.0.img}}'>''">
                         <div class="divider-text">Images</div>
                         <div class="d-inline-flex gallery">
-                            <wb-foreach wb-from="images">
+                            <wb-foreach wb-from="images" wb-tpl="false">
                                 <a data-fslightbox="images" class="d-inline-block m-2" href="{{img}}">
                                     <img data-src="/thumbc/100x100/src/{{img}}" class="img-fluid" alt="{{alt}}" title="{{title}}" />
                                 </a>
@@ -39,7 +39,7 @@
                         <div class="divider-text">Audio</div>
                         <div class="d-inline-flex gallery">
                             <ul class="list-group">
-                                <wb-foreach wb-from="audio">
+                                <wb-foreach wb-from="audio" wb-tpl="false">
                                     <li class="list-group-item d-flex align-items-center">
                                         <audio controls>
                                             <source src="{{img}}" type="audio/mpeg">
@@ -59,11 +59,12 @@
                         <div class="divider-text">Video</div>
                         <div class="d-inline-flex gallery">
                             <ul class="list-group">
-                                <wb-foreach wb-from="video">
+                                <wb-foreach wb-from="video" wb-tpl="false">
+                                    <wb-var ext='{{mb_substr({{img}},"-4")}}' />
                                     <li class="list-group-item d-flex align-items-center">
                                         <video width="400" height="300" controls="controls" poster="video/duel.jpg">
-                                            <source src="{{img}}" type="video/mp4" wb-if="'{{substr({{img}},-4)}}'=='.mp4'">
-                                            <source src="{{img}}" type="video/x-msvideo" wb-if="'{{substr({{img}},-4)}}'=='.avi'">
+                                            <source src="{{img}}" type="video/mp4" wb-if="'{{_var.ext}}'=='.mp4'">
+                                            <source src="{{img}}" type="video/x-msvideo" wb-if="'{{_var.ext}}'=='.mp4'">
                                             Тег video не поддерживается вашим браузером.
                                             <a href="video/x-msvideo" download>Скачайте видео</a>.
                                         </video>
