@@ -62,8 +62,8 @@
                                 <wb-foreach wb-from="video">
                                     <li class="list-group-item d-flex align-items-center">
                                         <video width="400" height="300" controls="controls" poster="video/duel.jpg">
-                                            <source src="{{img}}" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' wb-if="'{{substr({{img}},-4)}}'=='.mp4'">
-                                            <source src="{{img}}" type='video/x-msvideo"' wb-if="'{{substr({{img}},-4)}}'=='.avi'">
+                                            <source src="{{img}}" type="video/mp4" wb-if="'{{substr({{img}},-4)}}'=='.mp4'">
+                                            <source src="{{img}}" type="video/x-msvideo" wb-if="'{{substr({{img}},-4)}}'=='.avi'">
                                             Тег video не поддерживается вашим браузером.
                                             <a href="video/x-msvideo" download>Скачайте видео</a>.
                                         </video>
