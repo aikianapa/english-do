@@ -1,9 +1,8 @@
-uploads/
-database/
 engine/
 tpl/page
 forms/news
 forms/pages
+assets/compress
 
-uploads
-database
+uploads/
+database/
