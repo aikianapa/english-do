@@ -15,9 +15,12 @@
         <template>
           {{#if error == true}}
             <p class="alert alert-warning">{{msg}}</p>
+            <button type="button" on-click='scan' class="mt-5 btn btn-primary">
+              Сканнер
+            </button>
           {{else}}
-          {{#member}}
-              <div class="card mg-t-100">
+            {{#member}}
+              <div class="card mg-t-100 shadow">
                 <div class="card-body">
                   <div class="card-text">
                     <div class="avatar avatar-xxl float-right"><img src="/thumbc/100x100/src{{avatar.0.img}}" class="rounded-circle" alt=""></div>
@@ -51,7 +54,7 @@
       </div>
     </div>
   </div>
-  <a href="javascript:void(0)" class="btn btn-secondary" onclick="test(this)">3570000001705</a>
+  <!--a href="javascript:void(0)" class="btn btn-secondary" onclick="test(this)">3570000001705</a-->
 </section>
 <script wb-app>
   wbapp.loadScripts([
@@ -77,7 +80,7 @@
         }
         wbapp.post("/form/visits/check", post, function(data) {
           if (data.error == false) {
-              result.set("visit.status", true)
+            result.set("visit.status", true)
           }
         })
       },
@@ -88,7 +91,7 @@
         }
         wbapp.post("/form/visits/uncheck", post, function(data) {
           if (data.error == false) {
-              result.set("visit.status", false)
+            result.set("visit.status", false)
           }
         })
       },
@@ -109,13 +112,16 @@
     $("#result").hide()
   })
   $(document).on("mod.barcode.scan", function(ev, data) {
+    console.log(data);
+    if (data.error == false) {
+      let today = new Date();
+      let dd = String(today.getDate()).padStart(2, '0');
+      let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+      let yyyy = today.getFullYear();
+      data.member.date = yyyy + "-" + mm + "-" + dd
+    }
     $("#interactive").hide()
     $("#result").show()
-    let today = new Date();
-    let dd = String(today.getDate()).padStart(2, '0');
-    let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    let yyyy = today.getFullYear();
-    data.member.date = yyyy + "-" + mm + "-" + dd
     result.set(data)
     result.fire('get')
   })
