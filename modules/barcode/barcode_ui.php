@@ -51,7 +51,7 @@
       </div>
     </div>
   </div>
-  <a href="javascript:void(0)" class="btn btn-secondary" onclick="test(this)">3570000001705</a>
+  <!--a href="javascript:void(0)" class="btn btn-secondary" onclick="test(this)">3570000001705</a-->
 </section>
 <script wb-app>
   wbapp.loadScripts([
@@ -111,7 +111,11 @@
   $(document).on("mod.barcode.scan", function(ev, data) {
     $("#interactive").hide()
     $("#result").show()
-    data.member.date = date("Y-m-d")
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, '0');
+    let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    let yyyy = today.getFullYear();
+    data.member.date = yyyy + "-" + mm + "-" + dd
     result.set(data)
     result.fire('get')
   })
