@@ -8,16 +8,11 @@
 <section id="modBarcodeContainer">
   <div class="container">
     <div class="row">
-
-
       <div id="interactive" class="viewport col-12"></div>
       <div id="result" class="col-12">
         <template>
           {{#if error == true}}
-            <p class="alert alert-warning">{{msg}}</p>
-            <button type="button" on-click='scan' class="mt-5 btn btn-primary">
-              Сканнер
-            </button>
+            <p class="alert alert-warning mg-t-100 shadow">{{msg}}</p>
           {{else}}
             {{#member}}
               <div class="card mg-t-100 shadow">
@@ -45,17 +40,44 @@
                   </div>
                 </div>
               </div>
-              <button type="button" on-click='scan' class="mt-5 btn btn-primary">
-                Сканнер
-              </button>
             {{/member}}
           {{/if}}
         </template>
       </div>
+                <div class="col-12 col-md-4 col-xl-3">
+                  <button type="button" onclick="result.fire('scan')" class="mt-5 btn btn-primary btn-block">
+                    Сканнер
+                  </button>
+                  <button type="button" onclick="members.fire('getlist')" class="mt-2 btn btn-secondary btn-block">
+                    Поиск по списку
+                  </button>
+                </div>
     </div>
   </div>
-  <!--a href="javascript:void(0)" class="btn btn-secondary" onclick="test(this)">3570000001705</a-->
 </section>
+
+<div class="off-canvas off-canvas-overlay" id="membersList">
+  <div class="off-canvas-header">
+    <a href="javascript:void(0)" onclick="$('#membersList').removeClass('show')" class="close pos-absolute r-20">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg></a>
+  </div>
+  <div class="off-canvas-body scroll-y">
+    <template>
+      <ul class="list-group pd-b-100">
+        {{#each members}}
+          <li class="list-group-item cursor-pointer" on-click="memberSet" data-card="{{card}}">
+            <div>{{last_name}} {{first_name}}</div>
+            <div class="badge badge-light">{{card}}</div>
+          </li>
+        {{/each}}
+      </ul>
+    </template>
+  </div>
+</div>
+
 <script wb-app>
   wbapp.loadScripts([
     "js/adapter.js",
@@ -107,12 +129,32 @@
     }
   })
 
+  var members = Ractive({
+    el: '#membersList .off-canvas-body',
+    template: $('#membersList template').html(),
+    data: {},
+    on: {
+      getlist() {
+        $("#membersList").addClass('show');
+        wbapp.get("/api/v2/list/users?active=on&role=student&@return=id,active,role,first_name,last_name,card&@sort=last_name", function(data) {
+          members.set("members", data)
+        })
+      },
+      memberSet(ev) {
+        $('#membersList').removeClass('show')
+        let card = $(ev.node).data("card")
+        wbapp.get("/form/visits/scan?card=" + card, {}, function(data) {
+          $(document).trigger('mod.barcode.scan', data)
+        });
+      }
+    }
+  })
+
   $(document).one("modBarcodeStart", function() {
     $("#modBarcodeContainer").barcode();
     $("#result").hide()
   })
   $(document).on("mod.barcode.scan", function(ev, data) {
-    console.log(data);
     if (data.error == false) {
       let today = new Date();
       let dd = String(today.getDate()).padStart(2, '0');
@@ -128,14 +170,7 @@
   wbapp.loadStyles([
     "css/styles.less"
   ]);
-  var test = function(ev) {
-    let code = $(ev).text()
-    wbapp.get("/form/visits/scan?card=" + code, {}, function(data) {
-      $(document).trigger('mod.barcode.scan', data)
-    });
-  }
-</script>
 
-</body>
+</script>
 
 </html>
