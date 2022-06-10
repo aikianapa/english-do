@@ -3,7 +3,7 @@ tpl/page
 forms/news
 forms/pages
 assets/compress
-uploads/
-database/
+uploads
+database
 tpl/css/main.css.cssgz
 tpl/css/.htaccess
