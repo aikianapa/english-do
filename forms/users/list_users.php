@@ -17,7 +17,8 @@
             <div class="header p-2">
                 <span clsss="row">
                     <div class="col-3">
-                        <input type="search" class="form-control" placeholder="{{_lang.search}}">
+                        <input type="search" class="form-control" placeholder="{{_lang.search}}"
+                         data-ajax="{'target':'#{{_form}}List','filter_add':{'$or':[{ 'first_name': {'$like' : '$value'} }, { 'last_name': {'$like' : '$value'} }  ]} }">
                     </div>
                 </span>
             </div>
@@ -28,14 +29,14 @@
                 <tr>
                     <th></th>
                     <th>Имя</th>
-                    <th>Контакт</th>
+                    <th>Карта</th>
                     <th>Роли</th>
                     <th>Создан</th>
                     <th class="text-right">Действия</th>
                 </tr>
             </thead>
             <tbody id="usersList">
-                <wb-foreach wb="table=users&sort=_created:d&bind=cms.list.users"
+                <wb-foreach wb="table=users&sort=last_name&bind=cms.list.users"
                     wb-filter="{'isgroup':'' }">
                     <tr>
                         <td>
@@ -43,10 +44,11 @@
                                 <img data-src="/thumbc/50x50/src{{avatar.0.img}}" class="rounded">
                             </div>
                         </td>
-                        <td>{{first_name}} {{last_name}}</td>
+                        <td>{{last_name}} {{first_name}}</td>
                         <td class="tx-11">
-                            {{wbPhoneFormat({{phone}})}}<br>{{email}}
-                            <span wb-if="'{{role}}'=='student'"><br>{{card}}</span>
+                            <span wb-if="'{{phone}}'>''">{{wbPhoneFormat({{phone}})}}<br></span>
+                            <span wb-if="'{{email}}'>''">{{email}}<br></span>
+                            <span wb-if="'{{role}}'=='student'">{{card}}</span>
                         </td>
                         <td>{{role}}</td>
                         <td>{{_created}}</td>

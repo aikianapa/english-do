@@ -141,4 +141,27 @@ class visitsClass extends cmsFormsClass
         echo $form->outer();
         die;
     }
+
+    public function member_visits() {
+        $app = $this->app;
+        $uid = $app->vars('_route.id');
+        $month = $app->vars('_post.month');
+        $month == "" ? $month = date('Y-m') : null;
+        $list = $this->app->itemList("visits", ['filter' => [
+            '$and' => [
+                'date' => [
+                    '$gte' => $month . '-01',
+                    '$lte' => $month . '-31',
+                    'uid' => $uid
+                ]
+            ]
+        ], 'sort' => 'date:a','return'=>'date']);
+        $list = array_values($list['list']);
+        foreach($list as &$date) {
+            $date['day'] = date('d',strtotime($date['date']));
+            $date['weekday'] = date('w',strtotime($date['date']));
+        }
+        header("Content-type:application/json");
+        echo wbJsonEncode($list);
+    }
 }

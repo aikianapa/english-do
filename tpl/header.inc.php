@@ -46,7 +46,7 @@
                     <li><a href="#process">Зачем</a></li>
                     <li><a href="#features-list">Польза</a></li>
                     <li><a href="#product">Цены</a></li>
-                    <li><a href="#guarantee">Контакты</a></li>
+                    <li><a href="#footer">Контакты</a></li>
                     <li class="btn btn-success"><a href="/control">Контроль</a></li>
                 </ul>
 
