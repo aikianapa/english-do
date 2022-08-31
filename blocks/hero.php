@@ -38,17 +38,17 @@
 
 <view header>
 
+<wb-var style="background: url({{bkg.0.img}}) center center no-repeat; background-size: cover;" wb-if="'{{bkg.0.img}}'>''" else='' />
 
-<section id="hero" class="static-header register-version light clearfix">
+<section id="hero" class="static-header register-version light clearfix" style="{{_var.style}}">
 
 
 
     <div class="container">
-        <div class="signup-wrapper animated hiding" data-animation="bounceInUp" data-delay="0">
+        <div class="signup-wrapper animated hiding" data-animation="bounceInUp" data-delay="1">
             <div class="row">
-
                 <div class="text-heading">
-                    <h1 class="animated hiding" data-animation="bounceInDown" data-delay="0">{{header}}</h1>
+                    <h1 class="animated hiding" data-animation="bounceInDown" data-delay="1">{{header}}</h1>
                     <p class="animated hiding text" data-animation="fadeInDown" data-delay="500">{{text}} {{_sett.phone}}</p>
                     <p><a href="{{link}}" wb-if="button > ''" target="_blank">
                             <img src="/assets/img/btn-vk.png" style="width:200px;margin-top:30px;" alt="{{button}}">
