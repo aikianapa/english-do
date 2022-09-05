@@ -6,11 +6,11 @@
     <link rel="stylesheet" href="/engine/modules/yonger/tpl/assets/css/yonger.less" />
     <link rel="stylesheet" href="/tpl/css/cabinet.less" />
     <script wb-app src="/engine/modules/yonger/tpl/assets/js/dashforge.js"></script>
-    <script wb-app src="/engine/modules/yonger/tpl/assets/js/yonger.js"></script>
+
 </head>
 
 <div wb-if="'{{_sess.user.role}}'!=='student'" class="ht-100v pd-t-100">
-    <div class="row m-5">
+    <div class="row m-5" id="signinForm">
         <div class="col-sm-4 offset-sm-4 bg-dark tx-white p-3 rounded-20 shadow">
             <h5 class="tx-center tx-white tx-20">English Do</h5>
             <div class="form-group">
@@ -21,9 +21,32 @@
                 <label>Secret key</label>
                 <input class="form-control" type="password" name="secret">
             </div>
-            <button type="button" class="btn btn-primary btn-block rounded-20">Sign in</button>
+            <button type="button" class="btn btn-primary btn-block rounded-20" on-click="signin">Sign in</button>
         </div>
     </div>
+    <script>
+        var cabinetSignin = new Ractive({
+            el: '#signinForm',
+            template: $('#signinForm').html(),
+            data: {},
+            on: {
+                signin(ev) {
+                    wbapp.post('/form/users/student_login', {
+                        'card': $('#signinForm [name=card]').val(),
+                        'secret': $('#signinForm [name=secret]').val()
+                    }, function(data) {
+                        if (data.error) {
+                            wbapp.toast('Error', data.msg, {
+                                bgcolor: 'danger'
+                            });
+                        } else {
+                            document.location.href = '/control';
+                        }
+                    })
+                }
+            }
+        })
+    </script>
 </div>
 <div wb-if="'{{_sess.user.role}}'=='student'" class="ht-100v container">
     <div class="row">
@@ -52,27 +75,47 @@
                     {{/each}}
                 </ul>
             </form>
-        <script wb-app>
-            let rep1 = new Ractive({
-                el: '#repMemberVisits',
-                template: $('#repMemberVisits').html(),
-                data: {
-                    list: []
+
+    <script>
+        var ready = false;
+        var cabinetVisits = new Ractive({
+            el: '#repMemberVisits',
+            template: $('#repMemberVisits').html(),
+            data: {
+                list: []
+            },
+            on: {
+                init() {
+                    wbapp.post('/cms/ajax/form/visits/member_visits/{{_sess.user.id}}', {}, function(
+                        data) {
+                        cabinetVisits.set('list', data)
+                    });
                 },
-                on: {
-                    init() {
-                        wbapp.post('/cms/ajax/form/visits/member_visits/{{_sess.user.id}}',{},function(data){
-                            rep1.set('list',data)
-                        });
-                    },
-                    changeMonth(ev) {
-                        wbapp.post('/cms/ajax/form/visits/member_visits/{{_sess.user.id}}',{month:$(ev.node).val()},function(data){
-                            rep1.set('list',data)
-                        });
-                    }
+                changeMonth(ev) {
+                    wbapp.post('/cms/ajax/form/visits/member_visits/{{_sess.user.id}}', {
+                        month: $(ev.node).val()
+                    }, function(data) {
+                        cabinetVisits.set('list', data)
+                    });
                 }
-            })
-        </script>
+            }
+        })
+
+        setTimeout(() => {
+            $(document).delegate('.filepicker [name=avatar]', 'change', function() {
+                wbapp.save($("#Profile"), {
+                    "table": "users",
+                    "item": "{{_sess.user.id}}",
+                    "form": "#Profile",
+                    "method": "ajax",
+                    "silent": true
+                });
+            });
+
+        }, 2000);
+        ready = true;
+        wbapp.init()
+    </script>
         </div>
     </div>
 
@@ -81,39 +124,10 @@
             <li class="list-group-item bg-gray-200 cursor-pointer" data-ajax="{'url':'/form/homeworks/show/{{id}}','html':'modal'}">{{date}} {{subject}}</li>
         </wb-foreach>
     </ul>
+
 </div>
 <modal>
 
 </modal>
-<script wb-app remove>
-    var ready = false;
-    $('.btn-primary').on('click', function() {
-        wbapp.post('/form/users/student_login', {
-            'card': $('[name=card]').val(),
-            'secret': $('[name=secret]').val()
-        }, function(data) {
-            if (data.error) {
-                wbapp.toast('Error', data.msg, {
-                    bgcolor: 'danger'
-                });
-            } else {
-                document.location.href = '/control';
-            }
-        })
-    });
-    setTimeout(() => {
-        $(document).delegate('.filepicker [name=avatar]', 'change', function() {
-            wbapp.save($("#Profile"), {
-                "table": "users",
-                "item": "{{_sess.user.id}}",
-                "form": "#Profile",
-                "method": "ajax",
-                "silent": true
-            });
-        });
-
-    }, 2000);
-    ready = true;
-</script>
 
 </html>
