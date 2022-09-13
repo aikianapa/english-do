@@ -79,7 +79,7 @@
     <script>
         var api = "/api/v2"
         var form = "money"
-        var base = api + "/list/" + form + "/?@size=12&@sort=fullname"
+        var base = api + "/list/" + form + "/?@size=12&@sort=_created:d"
         var moneyList = new Ractive({
             el: "#moneyList",
             template: $("#moneyList").html(),
