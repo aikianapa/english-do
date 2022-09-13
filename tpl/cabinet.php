@@ -24,8 +24,31 @@
             <button type="button" class="btn btn-primary btn-block rounded-20" on-click="signin">Sign in</button>
         </div>
     </div>
+    <script>
+        var cabinetSignin = new Ractive({
+            el: '#signinForm',
+            template: $('#signinForm').html(),
+            data: {},
+            on: {
+                signin(ev) {
+                    wbapp.post('/form/users/student_login', {
+                        'card': $('#signinForm [name=card]').val(),
+                        'secret': $('#signinForm [name=secret]').val()
+                    }, function(data) {
+                        if (data.error) {
+                            wbapp.toast('Error', data.msg, {
+                                bgcolor: 'danger'
+                            });
+                        } else {
+                            document.location.href = '/control';
+                        }
+                    })
+                }
+            }
+        })
+    </script>
 </div>
-<div wb-if="'{{_sess.user.role}}'=='student'" class="ht-100v container scroll-y pb-5 pt-5">
+<div wb-if="'{{_sess.user.role}}'=='student'" class="ht-100v container scroll-y">
     <div class="row">
         <div class="col">
             <div class="card bg-dark tx-white wd-250 mb-4">
@@ -44,7 +67,7 @@
         </div>
         <div class="col">
             <form id="repMemberVisits" wb-off>
-                <h4 class="tx-white">Attendance history</h4>
+                <h4 class="tx-white">История посещений</h4>
                 <input type="month" name="month" value='{{date("Y-m")}}' class="form-control" on-change="changeMonth">
                 <ul class="list-inline mt-3">
                     {{#each list}}
@@ -52,6 +75,7 @@
                     {{/each}}
                 </ul>
             </form>
+
             <script>
                 var ready = false;
                 var cabinetVisits = new Ractive({
@@ -101,12 +125,12 @@
         </wb-foreach>
     </ul>
 
-    <div class="mt-5">
+    <div class="mt-5 mb-5">
         <form id="homeworkUpload">
             <wb-data wb="table=users&item={{_sess.user.id}}">
-            <div class="form-group">
-                <div class="divider-text tx-white">Upload you homework files</div>
-                <wb-module name="hw_files" wb="{
+                <div class="form-group">
+                    <div class="divider-text tx-white">Upload you homework files</div>
+                    <wb-module name="hw_files" wb="{
                                 'module':'filepicker',
                                 'mode':'multi',
                                 'path':'/uploads/homeworks/students/{{card}}',
@@ -116,24 +140,24 @@
                                 'width': '100',
                                 'height': '100'
                                 }">
-                </wb-module>
-            </div>
-            <div class="form-group">
-                <div class="divider-text tx-white">Describe you homework</div>
-                <wb-module wb="module=jodit" name="hw_comment">
+                    </wb-module>
+                </div>
+                <div class="form-group">
+                    <div class="divider-text tx-white">Describe you homework</div>
+                    <wb-module wb="module=jodit" name="hw_comment">
 
-                </wb-module>
-            </div>
+                    </wb-module>
+                </div>
             </wb-data>
         </form>
-        <script wb-app>
+        <script>
             let $upform = $('#homeworkUpload')
-            $upform.find(':input').on('change',function(){
+            $upform.find(':input').on('change', function() {
                 let data = $upform.serializeJson()
                 let uid = wbapp._session.user.id;
                 if (uid > ' ') {
                     delete data['upload_ext']
-                    wbapp.post(`/api/v2/update/users/${uid}`,data,function(res){
+                    wbapp.post(`/api/v2/update/users/${uid}`, data, function(res) {
 
                     })
                 }
@@ -142,6 +166,8 @@
     </div>
 
 </div>
+
+
 <modal>
 
 </modal>
