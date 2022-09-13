@@ -15,6 +15,14 @@ class moneyClass extends cmsFormsClass {
     function prepareItem(&$item) {
         $student = $this->app->itemRead('users', $item['student']);
         $item['fullname'] = $student['last_name'] .' '. $student['first_name'] ;
+
+        @$tmp = explode('-', $item['period']);
+        $item['period'] = implode('.', array_reverse($tmp));
+
+        @$tmp = explode('-', $item['date']);
+        $item['date'] = implode('.', array_reverse($tmp));
+
+
     }
 }
 ?>

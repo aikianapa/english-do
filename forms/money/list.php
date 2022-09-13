@@ -9,9 +9,16 @@
         </button>
 
         <div class="collapse navbar-collapse order-2" id="navbarSupportedContent">
-            <form class="form-inline mg-t-10 mg-lg-0  ml-auto" onsubmit="javascript:return">
+            <form class="form-inline mg-t-10 mg-lg-0  ml-auto" onsubmit="javascript:return false">
                 <div class="form-group">
-                    <input class="form-control mg-r-10 col-auto" type="search" placeholder="Поиск..." aria-label="Поиск..." on-keyup="find">
+                    
+                    <div class="input-group mg-r-10">
+                        <input class="form-control col-auto" type="search" placeholder="Поиск..." aria-label="Поиск..." on-change="find">
+                        <div class="input-group-append">
+                            <span class="input-group-text cursor-pointer" onclick="javascript:$(this).parents('.input-group').children('input').trigger('change')">Найти</span>
+                        </div>
+                    </div>
+
                     <a href="#" data-ajax="{'url':'/cms/ajax/form/money/edit/_new','html':'.content-body modals'}" class="btn btn-primary">
                         <img src="/module/myicons/24/FFFFFF/item-select-plus-add.svg" width="24" height="24" /> Добавить оплату
                     </a>
@@ -23,9 +30,16 @@
             {{#each result}}
             <li data-id="{{.id}}" class="list-group-item">
                 <div class="row">
-                <div class="col-sm-5"><span class="badge badge-info">{{.period}}</span> {{.fullname}}</div>
-                <div class="col-sm-3 tx-12">{{.amount}}₽</div>
-                <div class="col-sm-3 tx-12">{{.account}}</div>
+                <div class="col-sm-2">
+                    {{#if .once == 'on'}}
+                    <span class="badge badge-warning">{{.date}}</span>
+                    {{else}}
+                    <span class="badge badge-info">{{.period}}</span>
+                    {{/if}}
+                </div>
+                <div class="col-sm-4">{{.fullname}}</div>
+                <div class="col-sm-2 tx-12">{{.amount}}₽</div>
+                <div class="col-sm-2 tx-12">{{.account}}</div>
                 <div class="tx-right pos-absolute t-10 r-10">
 
                     <a href="javascript:" data-ajax="{'url':'/cms/ajax/form/money/edit/{{.id}}','html':'.content-body modals'}" class="d-inline">
@@ -128,12 +142,12 @@
                                     }
                                 },
                                 {
-                                    'country': {
+                                    'account': {
                                         '$like': value
                                     }
                                 },
                                 {
-                                    'city': {
+                                    'period': {
                                         '$like': value
                                     }
                                 }
