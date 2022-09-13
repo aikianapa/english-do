@@ -60,7 +60,7 @@
                         <div class="d-inline-flex gallery">
                             <ul class="list-group">
                                 <wb-foreach wb-from="video" wb-tpl="false">
-                                    <wb-var ext='{{mb_substr({{img}},"-4")}}' />
+                                    <wb-var ext='{{end({{explode(".",{{img}})}})}}' />
                                     <li class="list-group-item d-flex align-items-center">
                                         <video width="400" height="300" controls="controls" poster="video/duel.jpg">
                                             <source src="{{img}}" type="video/mp4" wb-if="'{{_var.ext}}'=='.mp4'">

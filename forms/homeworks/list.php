@@ -1,11 +1,16 @@
 <html>
 <div class="m-3" id="yongerSpace">
     <nav class="nav navbar navbar-expand-md col">
-        <h3 class="tx-bold tx-spacing--2 order-1">Домашняя работа</h3>
+        <h3 class="tx-bold tx-spacing--2 order-1">Homeworks</h3>
         <div class="ml-auto order-2 float-right">
+            <a href="#" data-ajax="{'url':'/cms/ajax/form/homeworks/check','html':'#yongerSpace'}"
+                class="btn btn-success">
+                <img src="/module/myicons/24/FFFFFF/checkmark-done-check.5.svg" width="24" height="24" /> Check
+            </a>
+
             <a href="#" data-ajax="{'url':'/cms/ajax/form/homeworks/edit/_new','html':'#yongerSpace modals'}"
                 class="btn btn-primary">
-                <img src="/module/myicons/24/FFFFFF/item-select-plus-add.svg" width="24" height="24" /> Создать
+                <img src="/module/myicons/24/FFFFFF/item-select-plus-add.svg" width="24" height="24" /> Create
             </a>
         </div>
     </nav>

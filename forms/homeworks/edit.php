@@ -13,7 +13,7 @@
                 <i class="fa fa-close r-20 position-absolute cursor-pointer" data-dismiss="modal"
                     aria-label="Close"></i>
             </div>
-            <div class="modal-body pd-20">
+            <div class="modal-body pb-5">
                 <form class="row" method="post" id="{{_form}}EditForm">
                     <div class="col-lg-8">
                         <div class="form-group row">
@@ -38,51 +38,62 @@
                             <wb-module wb="module=jodit" name="text" />
                         </div>
 
-                        <div class="form-group">
-                            <div class="divider-text">Документы (pdf,doc,xls,txt)</div>
+
+                        <div class="row">
+                        <div class="form-group col-sm-3 col-6">
+                            <div class="divider-text">Документы<br>(pdf,doc,xls,txt)</div>
                             <wb-module name="docs" wb="{
                                 'module':'filepicker',
                                 'mode':'multi',
                                 'original': true,
                                 'button':'Документы',
                                 'path':'/uploads/homeworks/docs/',
-                                'ext': 'pdf,txt,doc,docx,xls,xlsx,ppt,pptx'
+                                'ext': 'pdf,txt,doc,docx,xls,xlsx,ppt,pptx',
+                                'width': '100',
+                                'height': '100'
                                 }" />
                         </div>
 
 
-                        <div class="form-group">
-                            <div class="divider-text">Изображения (jpg,gif,png,svg)</div>
+                        <div class="form-group col-sm-3 col-6">
+                            <div class="divider-text">Изображения<br>(jpg,gif,png,svg)</div>
                             <wb-module name="images" wb="{
                                 'module':'filepicker',
                                 'mode':'multi',
                                 'path':'/uploads/homeworks/images/',
                                 'button':'Изображения',
-                                'ext': 'jpg,gif,png,svg',
-                                'original': false
+                                'ext': 'jpg,jpeg,gif,png,svg',
+                                'original': false,
+                                'width': '100',
+                                'height': '100'
                                 }" />
                         </div>
-                        <div class="form-group">
-                            <div class="divider-text">Аудиофайлы (mp3)</div>
+                        <div class="form-group col-sm-3 col-6">
+                            <div class="divider-text">Аудиофайлы<br>(mp3)</div>
                             <wb-module name="audio" wb="{
                                 'module':'filepicker',
                                 'mode':'multi',
                                 'path':'/uploads/homeworks/audio/',
                                 'button':'Аудиофайлы',
                                 'ext': 'mp3',
-                                'original': false
+                                'original': false,
+                                'width': '100',
+                                'height': '100'
                                 }" />
                         </div>
-                        <div class="form-group">
-                            <div class="divider-text">Видеофайлы (mp4,avi)</div>
+                        <div class="form-group col-sm-3 col-6">
+                            <div class="divider-text">Видеофайлы<br>(mp4,avi)</div>
                             <wb-module name="video" wb="{
                                 'module':'filepicker',
                                 'mode':'multi',
                                 'path':'/uploads/homeworks/video/',
                                 'button':'Видеофайлы',
                                 'ext': 'mp4,avi',
-                                'original': false
+                                'original': false,
+                                'width': '100',
+                                'height': '100'
                                 }" />
+                        </div>
                         </div>
                     </div>
                     <div class="col-lg-4" id="students">
