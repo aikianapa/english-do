@@ -67,7 +67,7 @@
         </div>
         <div class="col">
             <form id="repMemberVisits" wb-off>
-                <h4 class="tx-white">История посещений</h4>
+                <h4 class="tx-white">Attendance history</h4>
                 <input type="month" name="month" value='{{date("Y-m")}}' class="form-control" on-change="changeMonth">
                 <ul class="list-inline mt-3">
                     {{#each list}}
