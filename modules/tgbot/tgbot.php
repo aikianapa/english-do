@@ -95,6 +95,7 @@ class modTgbot
                 }
 
                 $reply = str_replace(['<br>','<br/>','<br />'], "\n", $reply);
+                $reply = str_replace(['&nbsp;'], " ", $reply);
 
                 if (!count($btns)) {
                     $keyboard = ['remove_keyboard' => true];
