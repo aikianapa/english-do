@@ -116,14 +116,14 @@
                 ready = true;
                 wbapp.init()
             </script>
-        </div>
-    </div>
-
-    <ul class="list-group">
+         <div class="divider-text tx-white">Current homework</div>
+        <ul class="list-group">
         <wb-foreach wb="table=homeworks" wb-filter="{'active':'on','$in': ['{{_sess.user.id}}','$students'] }">
             <li class="list-group-item bg-gray-200 cursor-pointer" data-ajax="{'url':'/form/homeworks/show/{{id}}','html':'modal'}">{{date}} {{subject}}</li>
         </wb-foreach>
     </ul>
+    </div>
+    </div>
 
     <div class="mt-5 mb-5">
         <form id="homeworkUpload">
