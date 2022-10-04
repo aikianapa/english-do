@@ -31,8 +31,8 @@
                                     <a href="#period" on-click="setView">Период</a> /
                                     <a href="#once" on-click="setView">Разово</a>
                                 </label>
-                                <input type="month" name="period" class="form-control" placeholder="Период" required>
-                                <input type="date" name="date" class="form-control" placeholder="Дата" required>
+                                <input type="month" name="period" class="form-control" placeholder="Период" >
+                                <input type="date" name="date" class="form-control" placeholder="Дата" >
                                 <input type="checkbox" name="once" value="{{once}}" class="d-none">
                             </div>
                             <script>
