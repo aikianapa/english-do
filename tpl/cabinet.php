@@ -118,7 +118,7 @@
             </script>
          <div class="divider-text tx-white">Current homework</div>
         <ul class="list-group">
-        <wb-foreach wb="table=homeworks" wb-filter="{'active':'on','$in': ['{{_sess.user.id}}','$students'] }">
+        <wb-foreach wb="table=homeworks&sort=date:d&limit=10" wb-filter="{'active':'on','$in': ['{{_sess.user.id}}','$students'] }">
             <li class="list-group-item bg-gray-200 cursor-pointer" data-ajax="{'url':'/form/homeworks/show/{{id}}','html':'modal'}">{{date}} {{subject}}</li>
         </wb-foreach>
     </ul>
