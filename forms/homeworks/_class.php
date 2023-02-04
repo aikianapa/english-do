@@ -19,7 +19,7 @@ class homeworksClass extends cmsFormsClass {
         foreach($item['fStudents'] as $uid) {
             $name > '' ? $name.=', ' : null;
             $user = $users[$uid];
-            $name .= $user['first_name']. ' '.$user['last_name'];
+            $name .= trim(@$user['first_name']. ' '.@$user['last_name']);
         }
         $item['fStudents'] = $name;
         isset($item['date']) ? $item['fDate'] = date('d.m.Y',strtotime($item['date'])) : $item['fDate'] = '';
