@@ -6,12 +6,12 @@
     <link rel="stylesheet" href="/engine/modules/yonger/tpl/assets/css/yonger.less" />
     <link rel="stylesheet" href="/tpl/css/cabinet.less" />
     <script wb-app src="/engine/modules/yonger/tpl/assets/js/dashforge.js"></script>
-
+    <wb-meta />
 </head>
 
 <div wb-if="'{{_sess.user.role}}'!=='student'" class="ht-100v pd-t-100">
-    <div class="row m-5" id="signinForm">
-        <div class="col-sm-4 offset-sm-4 bg-dark tx-white p-3 rounded-20 shadow">
+    <div class="m-5 row" id="signinForm">
+        <div class="p-3 shadow col-sm-4 offset-sm-4 bg-dark tx-white rounded-20">
             <h5 class="tx-center tx-white tx-20">English Do</h5>
             <div class="form-group">
                 <label>Card number</label>
@@ -24,7 +24,7 @@
             <button type="button" class="btn btn-primary btn-block rounded-20" on-click="signin">Sign in</button>
         </div>
     </div>
-    <script>
+    <script wb-app>
         var cabinetSignin = new Ractive({
             el: '#signinForm',
             template: $('#signinForm').html(),
@@ -48,10 +48,10 @@
         })
     </script>
 </div>
-<div wb-if="'{{_sess.user.role}}'=='student'" class="ht-100v container scroll-y">
+<div wb-if="'{{_sess.user.role}}'=='student'" class="container ht-100v scroll-y">
     <div class="row">
         <div class="col">
-            <div class="card bg-dark tx-white wd-250 mb-4">
+            <div class="mb-4 card bg-dark tx-white wd-250">
                 <div class="card-body">
                     <wb-data wb="table=users&item={{_sess.user.id}}">
                         {{first_name}} {{last_name}}
@@ -69,14 +69,14 @@
             <form id="repMemberVisits" wb-off>
                 <h4 class="tx-white">Attendance history</h4>
                 <input type="month" name="month" value='{{date("Y-m")}}' class="form-control" on-change="changeMonth">
-                <ul class="list-inline mt-3">
+                <ul class="mt-3 list-inline">
                     {{#each list}}
-                    <li class="list-inline-item btn btn-xs btn-primary mb-2">{{day}}</li>
+                        <li class="mb-2 list-inline-item btn btn-xs btn-primary">{{day}}</li>
                     {{/each}}
                 </ul>
             </form>
 
-            <script>
+            <script wb-app>
                 var ready = false;
                 var cabinetVisits = new Ractive({
                     el: '#repMemberVisits',
@@ -116,13 +116,13 @@
                 ready = true;
                 wbapp.init()
             </script>
-         <div class="divider-text tx-white">Current homework</div>
-        <ul class="list-group">
-        <wb-foreach wb="table=homeworks&sort=date:d&limit=10" wb-filter="{'active':'on','$in': ['{{_sess.user.id}}','$students'] }">
-            <li class="list-group-item bg-gray-200 cursor-pointer" data-ajax="{'url':'/form/homeworks/show/{{id}}','html':'modal'}">{{date}} {{subject}}</li>
-        </wb-foreach>
-    </ul>
-    </div>
+            <div class="divider-text tx-white">Current homework</div>
+            <ul class="list-group">
+                <wb-foreach wb="table=homeworks&sort=date:d&limit=10" wb-filter="{'active':'on','$in': ['{{_sess.user.id}}','$students'] }">
+                    <li class="bg-gray-200 cursor-pointer list-group-item" data-ajax="{'url':'/form/homeworks/show/{{id}}','html':'modal'}">{{date}} {{subject}}</li>
+                </wb-foreach>
+            </ul>
+        </div>
     </div>
 
     <div class="mt-5 mb-5">
@@ -150,7 +150,7 @@
                 </div>
             </wb-data>
         </form>
-        <script>
+        <script wb-app>
             let $upform = $('#homeworkUpload')
             $upform.find(':input').on('change', function() {
                 let data = $upform.serializeJson()
@@ -171,5 +171,6 @@
 <modal>
 
 </modal>
+<wb-snippet name="wbapp" />
 
 </html>

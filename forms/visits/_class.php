@@ -2,6 +2,11 @@
 class visitsClass extends cmsFormsClass
 {
 
+    function afterItemRead(&$item) {
+        $item['month'] = date('Y-m', strtotime($item['date']));
+        $item['day'] = date('d', strtotime($item['date']));
+    }
+
     function scan()
     {
         $code = $_GET['card'];
@@ -41,6 +46,12 @@ class visitsClass extends cmsFormsClass
                     'error' => false,
                     'msg' => 'Посещение отмечено',
                     'status' => true
+                ];
+            } else {
+                $result = [
+                    'error' => false,
+                    'msg' => 'Посещение не зафиксировано',
+                    'status' => false
                 ];
             }
         }
