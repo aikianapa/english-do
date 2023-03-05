@@ -28,6 +28,7 @@
                         <div class="mt-3 sm:mt-5">
                             <form wb-module="twform" id="formTeam">
                                 <input x-bind:value="team.data.id" type="hidden" name="id">
+                                <input name="role" type="hidden" value="student"/>
                                 <label class="w-full">First Name</label>
                                 <input x-bind:value="team.data.first_name" name="first_name">
                                 <label class="w-full">Last Name</label>
