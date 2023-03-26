@@ -1,4 +1,4 @@
-<div x-data="{$menu:{}}" x-init='$menu = await wbapp.xinit("/tpl/admin/menu.js"); $menu.init()'>
+<div class="print:hidden" x-data="{$menu:{}}" x-init='$menu = await wbapp.xinit("/tpl/admin/menu.js"); $menu.init()'>
     <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
     <div class="relative z-40 lg:hidden" role="dialog" aria-modal="true">
         <!--

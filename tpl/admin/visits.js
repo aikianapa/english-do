@@ -82,7 +82,7 @@ var visits = function () {
         },
 
         getNoOfDays() {
-            let daysInMonth = new Date(this.year, this.month -1, 0).getDate();
+            let daysInMonth = new Date(this.year, this.month , 0).getDate();
             // find where to start calendar day of week
             let first = new Date(this.year, this.month-1, 0)
             let dayOfWeek = first.getDay()

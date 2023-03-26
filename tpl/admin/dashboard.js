@@ -17,6 +17,8 @@ var dash = function () {
         no_of_days: [''],
         blankdays: [],
         id: '',
+        uid: '',
+        uname: '',
         init() {
             var id = wbapp.newId('', 'twd')
             var $el = document.querySelector('[x-init*="dashboard.js"]:not([id])')
@@ -68,7 +70,24 @@ var dash = function () {
             this.getNoOfDays()
             this.checkVisits()
         },
+        userRep(uid) {
+            this.uid = uid
 
+            this.list.forEach(item => {
+                if (item.id == uid) {
+                    this.uname = item.last_name + ' ' + item.first_name
+                }
+            });
+        },
+        isVisit(day) {
+            let res
+            day = ('0' + day).slice(-2)
+            if (this.visits[day] !== undefined) {
+                let data = Object.keys(this.visits[day])
+                res = data.indexOf(this.uid) !== -1 ? true : false;
+            }
+            return res
+        },
         getNoOfDays() {
             let daysInMonth = new Date(this.year, this.month , 0).getDate();
             // find where to start calendar day of week
