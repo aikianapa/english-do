@@ -34,7 +34,7 @@
                         <template x-for="(item, index) in $.list">
                             <tr class="odd:bg-teal-50 even:bg-blue-50">
                                 <td class="p-1 text-sm font-medium text-gray-900 cursor-pointer border-x whitespace-nowrap">
-                                    <a href="javascript:void(0)" x-text="item.last_name + ' ' +item.first_name" x-on:click="$.userRep(item.id)"></a>
+                                    <a href="#" class="cursor-pointer" x-text="item.last_name + ' ' +item.first_name" x-on:click="$.userRep(item.id)"></a>
                                 </td>
                                         <template x-for="day in $.no_of_days">
                                 <td class="p-0 text-sm text-center text-indigo-600 border-r whitespace-nowrap">
