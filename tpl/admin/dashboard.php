@@ -34,49 +34,49 @@
                         <template x-for="(item, index) in $.list">
                             <tr class="odd:bg-teal-50 even:bg-blue-50">
                                 <td class="p-1 text-sm font-medium text-gray-900 cursor-pointer border-x whitespace-nowrap">
-                                    <a href="#" class="cursor-pointer" x-text="item.last_name + ' ' +item.first_name" x-on:click="$.userRep(item.id)"></a>
+                                    <button type="button" class="cursor-pointer" x-text="item.last_name + ' ' +item.first_name" x-on:click="$.userRep(item.id)"></button>
                                 </td>
-                                        <template x-for="day in $.no_of_days">
-                                <td class="p-0 text-sm text-center text-indigo-600 border-r whitespace-nowrap">
-                                    <svg class="w-6 h-6" x-show="$.getCheck(day, item.id)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="w-5 h-5">
-                                        <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd"></path>
-                                    </svg>
-                                </td>
+                                <template x-for="day in $.no_of_days">
+                                    <td class="p-0 text-sm text-center text-indigo-600 border-r whitespace-nowrap">
+                                        <svg class="w-6 h-6" x-show="$.getCheck(day, item.id)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="w-5 h-5">
+                                            <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </td>
+                                </template>
+                            </tr>
                         </template>
-                        </tr>
+                        <!-- More people... -->
+                    </tbody>
+                </table>
+            </div>
         </template>
-        <!-- More people... -->
-        </tbody>
-        </table>
-    </div>
-    </template>
 
-    <template x-if="$.uid">
-        <div class="mt-5">
-            <button class="px-3 py-2 text-sm text-white bg-green-600 rounded-md print:hidden" x-on:click="print()">Print</button>
-            <button class="px-3 py-2 ml-3 text-sm text-white bg-gray-600 rounded-md print:hidden" x-on:click="$.uid=''">Back</button>
-            <div class="md:pr-14 print:block">
-                <h3 class="text-center" x-text="$.uname +' ('+$.monthes[$.month] + ' ' + $.year+')'"></h3>
-                <div class="grid grid-cols-7 mt-10 text-xs leading-6 text-center text-gray-500">
-                    <template x-for="day in $.days">
-                        <div x-text="day"></div>
-                    </template>
-                </div>
-                <div class="grid grid-cols-7 mt-2 text-sm text-center">
-                    <template x-for="blankday in $.blankdays">
-                        <div class="py-2">
-                            <div class="p-1 text-sm border border-transparent"></div>
-                        </div>
-                    </template>
-                    <template x-for="day in $.no_of_days">
-                        <div class="flex justify-center py-2">
-                            <div x-text="day" class="w-8 h-8 leading-8 text-center rounded-full cursor-pointer" :class="$.isVisit(day) == true ? 'bg-blue-500 print:border print:border-gray-700 text-white print:text-gray-900 print:font-bold' : 'text-gray-500'"></div>
-                        </div>
-                    </template>
+        <template x-if="$.uid">
+            <div class="mt-5">
+                <button class="px-3 py-2 text-sm text-white bg-green-600 rounded-md print:hidden" x-on:click="print()">Print</button>
+                <button class="px-3 py-2 ml-3 text-sm text-white bg-gray-600 rounded-md print:hidden" x-on:click="$.uid=''">Back</button>
+                <div class="md:pr-14 print:block">
+                    <h3 class="text-center" x-text="$.uname +' ('+$.monthes[$.month] + ' ' + $.year+')'"></h3>
+                    <div class="grid grid-cols-7 mt-10 text-xs leading-6 text-center text-gray-500">
+                        <template x-for="day in $.days">
+                            <div x-text="day"></div>
+                        </template>
+                    </div>
+                    <div class="grid grid-cols-7 mt-2 text-sm text-center">
+                        <template x-for="blankday in $.blankdays">
+                            <div class="py-2">
+                                <div class="p-1 text-sm border border-transparent"></div>
+                            </div>
+                        </template>
+                        <template x-for="day in $.no_of_days">
+                            <div class="flex justify-center py-2">
+                                <div x-text="day" class="w-8 h-8 leading-8 text-center rounded-full cursor-pointer" :class="$.isVisit(day) == true ? 'bg-blue-500 print:border print:border-gray-700 text-white print:text-gray-900 print:font-bold' : 'text-gray-500'"></div>
+                            </div>
+                        </template>
+                    </div>
                 </div>
             </div>
-        </div>
-    </template>
+        </template>
 
-</div>
+    </div>
 </div>
