@@ -14,7 +14,7 @@
 <wb-meta />
 </head>
 
-<body class="h-screen overflow-hidden" _wb-if='wbCheckAllow("admin")'>
+<body class="h-screen overflow-hidden" wb-if='wbCheckAllow("admin")'>
 
     <div x-data="{$admin:{}}" x-init='$admin = await wbapp.xinit("/tpl/admin/admin.js"); $admin.init()'>
         <wb-include src="/tpl/admin/menu.php" />
